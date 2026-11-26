@@ -1,0 +1,1879 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BISWAJIT CHUTIA — Resume &amp; Portfolio</title>
+
+  <!-- Google Fonts: Inter & Plus Jakarta Sans (with system fallbacks) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+            display: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    /* =========================================================================
+     * Dynamic Accent Theme Tokens
+     * ========================================================================= */
+    :root {
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --accent-soft: rgba(37, 99, 235, 0.12);
+      --accent-border: rgba(37, 99, 235, 0.35);
+    }
+
+    [data-accent="emerald"] {
+      --accent: #059669;
+      --accent-hover: #047857;
+      --accent-soft: rgba(5, 150, 105, 0.12);
+      --accent-border: rgba(5, 150, 105, 0.35);
+    }
+
+    [data-accent="violet"] {
+      --accent: #7c3aed;
+      --accent-hover: #6d28d9;
+      --accent-soft: rgba(124, 58, 237, 0.12);
+      --accent-border: rgba(124, 58, 237, 0.35);
+    }
+
+    [data-accent="amber"] {
+      --accent: #d97706;
+      --accent-hover: #b45309;
+      --accent-soft: rgba(217, 119, 6, 0.14);
+      --accent-border: rgba(217, 119, 6, 0.38);
+    }
+
+    /* Accent Helper Classes */
+    .bg-accent { background-color: var(--accent); }
+    .bg-accent:hover { background-color: var(--accent-hover); }
+    .bg-accent-static { background-color: var(--accent); }
+    .bg-accent-soft { background-color: var(--accent-soft); }
+    .text-accent { color: var(--accent); }
+    .border-accent { border-color: var(--accent); }
+    .border-accent-soft { border-color: var(--accent-border); }
+
+    /* Active Navigation Pill */
+    .nav-link.active {
+      color: var(--accent);
+      background-color: var(--accent-soft);
+      font-weight: 600;
+    }
+
+    /* Live Edit Mode Visual Affordances */
+    body.edit-mode-active [data-editable="true"] {
+      outline: 2px dashed var(--accent-border);
+      outline-offset: 4px;
+      border-radius: 0.375rem;
+      cursor: text;
+      transition: outline-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    body.edit-mode-active [data-editable="true"]:focus {
+      outline: 2px solid var(--accent);
+      background-color: var(--accent-soft);
+    }
+
+    /* Smooth Scroll-Reveal Transition */
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================================================================
+     * Dedicated Ink-Friendly A4 Print / PDF Resume Stylesheet
+     * ========================================================================= */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 0.5in 0.55in;
+      }
+
+      html, body {
+        background: #ffffff !important;
+        color: #111827 !important;
+        font-size: 10pt !important;
+        line-height: 1.42 !important;
+      }
+
+      /* Hide interactive web-only chrome */
+      header,
+      footer,
+      #mobile-menu,
+      #edit-toolbar,
+      #project-filters,
+      #contact-form-wrapper,
+      #toast-container,
+      #project-modal,
+      #add-project-modal,
+      #reset-modal,
+      .no-print {
+        display: none !important;
+      }
+
+      /* Reveal print-only resume header contact block */
+      .print-only {
+        display: block !important;
+      }
+
+      main {
+        max-width: 100% !important;
+        padding: 0 !important;
+      }
+
+      main > * + * {
+        margin-top: 1rem !important;
+      }
+
+      section {
+        break-inside: avoid;
+      }
+
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
+      /* Flatten glassmorphism & dark cards for clean black-on-white printing */
+      .print-card {
+        background: #ffffff !important;
+        border: 1px solid #d1d5db !important;
+        box-shadow: none !important;
+        color: #111827 !important;
+        padding: 0.85rem !important;
+        break-inside: avoid;
+      }
+
+      .print-text-dark {
+        color: #111827 !important;
+      }
+
+      .print-text-muted {
+        color: #374151 !important;
+      }
+
+      .skill-bar-track {
+        background: #e5e7eb !important;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+
+      .skill-bar-fill {
+        background: #1f2937 !important;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+
+      a {
+        text-decoration: none !important;
+        color: #111827 !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 font-sans antialiased overflow-x-hidden transition-colors duration-200">
+
+  <!-- =========================================================================
+   * 1. TOP STICKY NAVIGATION BAR
+   * ========================================================================= -->
+  <header class="sticky top-0 z-40 w-full backdrop-blur-lg bg-white/80 dark:bg-slate-950/80 border-b border-slate-200/80 dark:border-slate-800/80 transition-colors">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 gap-3">
+
+        <!-- Brand Initials (BC) + Name -->
+        <a href="#about" class="flex items-center gap-2.5 group shrink-0">
+          <div id="nav-initials" class="w-9 h-9 rounded-xl bg-accent-static text-white font-display font-extrabold text-sm tracking-wide flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
+            BC
+          </div>
+          <span id="nav-brand-name" class="font-display font-bold text-sm sm:text-base tracking-tight text-slate-900 dark:text-white hidden sm:inline">
+            BISWAJIT CHUTIA
+          </span>
+        </a>
+
+        <!-- Desktop Section Links -->
+        <nav aria-label="Primary Navigation" class="hidden lg:flex items-center gap-1">
+          <a href="#about" data-nav="about" class="nav-link px-3 py-1.5 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors">About</a>
+          <a href="#projects" data-nav="projects" class="nav-link px-3 py-1.5 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors">Projects</a>
+          <a href="#skills" data-nav="skills" class="nav-link px-3 py-1.5 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors">Skills</a>
+          <a href="#experience" data-nav="experience" class="nav-link px-3 py-1.5 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors">Experience</a>
+          <a href="#education" data-nav="education" class="nav-link px-3 py-1.5 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors">Education</a>
+          <a href="#contact" data-nav="contact" class="nav-link px-3 py-1.5 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors">Contact</a>
+        </nav>
+
+        <!-- Action Controls -->
+        <div class="flex items-center gap-1.5 sm:gap-2">
+          <!-- Edit Mode Toggle -->
+          <button
+            id="toggle-edit-btn"
+            type="button"
+            title="Toggle Live Edit Mode"
+            class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs sm:text-sm font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 hover:border-slate-300 dark:hover:border-slate-600 transition-all cursor-pointer"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+            </svg>
+            <span id="edit-btn-label" class="hidden sm:inline">Edit Mode</span>
+          </button>
+
+          <!-- Print / Save as PDF -->
+          <button
+            id="print-btn"
+            type="button"
+            title="Print or Save as PDF"
+            class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-accent text-white shadow-sm transition-all cursor-pointer"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0110.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0l.229 2.523a1.125 1.125 0 01-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0021 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 00-1.913-.247M6.34 18H5.25A2.25 2.25 0 013 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 011.913-.247m10.5 0a48.536 48.536 0 00-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5z" />
+            </svg>
+            <span class="hidden md:inline">Print / PDF</span>
+          </button>
+
+          <!-- Accent Color Switcher -->
+          <div class="relative" id="accent-picker-wrapper">
+            <button
+              id="accent-picker-btn"
+              type="button"
+              aria-label="Choose accent color"
+              title="Switch Accent Color"
+              class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors flex items-center justify-center cursor-pointer"
+            >
+              <span class="w-4 h-4 rounded-full bg-accent-static block ring-2 ring-offset-2 ring-slate-200 dark:ring-slate-700 dark:ring-offset-slate-900"></span>
+            </button>
+            <div
+              id="accent-dropdown"
+              class="hidden absolute right-0 mt-2 w-40 p-2 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 shadow-xl z-50"
+            >
+              <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 px-2 pb-1.5">Accent Theme</p>
+              <div class="grid grid-cols-1 gap-1">
+                <button type="button" data-set-accent="blue" class="accent-option flex items-center gap-2.5 px-2.5 py-2 rounded-xl text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer">
+                  <span class="w-3.5 h-3.5 rounded-full bg-blue-600"></span> Blue
+                </button>
+                <button type="button" data-set-accent="emerald" class="accent-option flex items-center gap-2.5 px-2.5 py-2 rounded-xl text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer">
+                  <span class="w-3.5 h-3.5 rounded-full bg-emerald-600"></span> Emerald
+                </button>
+                <button type="button" data-set-accent="violet" class="accent-option flex items-center gap-2.5 px-2.5 py-2 rounded-xl text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer">
+                  <span class="w-3.5 h-3.5 rounded-full bg-violet-600"></span> Violet
+                </button>
+                <button type="button" data-set-accent="amber" class="accent-option flex items-center gap-2.5 px-2.5 py-2 rounded-xl text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer">
+                  <span class="w-3.5 h-3.5 rounded-full bg-amber-600"></span> Amber
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dark / Light Mode Toggle -->
+          <button
+            id="theme-toggle-btn"
+            type="button"
+            aria-label="Toggle dark mode"
+            title="Toggle Dark / Light Mode"
+            class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
+          >
+            <svg class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+            </svg>
+            <svg class="w-4 h-4 block dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+            </svg>
+          </button>
+
+          <!-- Mobile Hamburger -->
+          <button
+            id="mobile-menu-btn"
+            type="button"
+            aria-label="Open menu"
+            aria-expanded="false"
+            class="lg:hidden p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
+          >
+            <svg id="hamburger-open" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+            <svg id="hamburger-close" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 px-4 py-3 space-y-1">
+      <a href="#about" data-nav="about" class="mobile-nav-link nav-link block px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-200">About</a>
+      <a href="#projects" data-nav="projects" class="mobile-nav-link nav-link block px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-200">Projects</a>
+      <a href="#skills" data-nav="skills" class="mobile-nav-link nav-link block px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-200">Skills</a>
+      <a href="#experience" data-nav="experience" class="mobile-nav-link nav-link block px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-200">Experience</a>
+      <a href="#education" data-nav="education" class="mobile-nav-link nav-link block px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-200">Education</a>
+      <a href="#contact" data-nav="contact" class="mobile-nav-link nav-link block px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-200">Contact</a>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+   * MAIN CONTENT CONTAINER
+   * ========================================================================= -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 pb-28 space-y-16 sm:space-y-24">
+
+    <!-- =======================================================================
+     * 2. HERO SECTION
+     * ======================================================================= -->
+    <section id="about" class="scroll-mt-24 reveal">
+      <div class="print-card relative overflow-hidden rounded-3xl bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border border-slate-200/80 dark:border-slate-800 shadow-sm p-6 sm:p-10 lg:p-12">
+        <!-- Subtle Ambient Glow (hidden in print) -->
+        <div class="no-print pointer-events-none absolute -top-24 -right-24 w-80 h-80 rounded-full bg-accent-soft blur-3xl opacity-80"></div>
+        <div class="no-print pointer-events-none absolute -bottom-24 -left-24 w-64 h-64 rounded-full bg-accent-soft blur-3xl opacity-50"></div>
+
+        <div class="relative z-10 space-y-8">
+          <div class="flex flex-col md:flex-row md:items-start gap-6 sm:gap-8">
+            <!-- Initials Avatar Badge (BC) -->
+            <div class="no-print shrink-0">
+              <div id="hero-avatar" class="w-20 h-20 sm:w-24 sm:h-24 rounded-3xl bg-accent-static text-white font-display font-extrabold text-3xl sm:text-4xl tracking-tight flex items-center justify-center shadow-lg ring-4 ring-white dark:ring-slate-900">
+                BC
+              </div>
+            </div>
+
+            <!-- Identity, Bio & Action Buttons -->
+            <div class="flex-1 space-y-4">
+              <div class="flex flex-wrap items-center gap-2.5">
+                <span class="no-print inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-accent-soft text-accent border border-accent-soft">
+                  <span class="w-2 h-2 rounded-full bg-accent-static animate-pulse"></span>
+                  Open to Collaborations &amp; Competitions
+                </span>
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 print-text-muted">
+                  <svg class="w-3.5 h-3.5 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                  </svg>
+                  <span id="profile-location" data-editable="true" data-field="location">Assam, India</span>
+                </span>
+              </div>
+
+              <div class="space-y-1.5">
+                <h1
+                  id="profile-name"
+                  data-editable="true"
+                  data-field="name"
+                  class="font-display font-extrabold text-3xl sm:text-5xl tracking-tight text-slate-900 dark:text-white print-text-dark"
+                >
+                  BISWAJIT CHUTIA
+                </h1>
+                <p
+                  id="profile-headline"
+                  data-editable="true"
+                  data-field="headline"
+                  class="text-base sm:text-xl font-semibold text-accent"
+                >
+                  Class 12 Science Student • Web &amp; AI Builder • Digital Media Creator
+                </p>
+              </div>
+
+              <!-- Print-Only Full Contact Line -->
+              <div class="print-only hidden text-xs text-slate-800 border-y border-slate-300 py-2 space-y-1">
+                <div>
+                  <strong>Email:</strong> <span id="print-email">chutiabiswajit403@gmail.com</span> &nbsp;|&nbsp;
+                  <strong>Phone:</strong> <span id="print-phone">+91 70867 47302</span> &nbsp;|&nbsp;
+                  <strong>Location:</strong> <span id="print-location">Assam, India</span>
+                </div>
+                <div>
+                  <strong>YouTube (Dil Se Music):</strong> <span id="print-youtube">https://youtube.com/@dilsemusic_yt?si=KdAiHODX4JDv4FyH</span>
+                </div>
+              </div>
+
+              <!-- Concise Bio -->
+              <p
+                id="profile-about"
+                data-editable="true"
+                data-field="about"
+                class="text-slate-600 dark:text-slate-300 text-sm sm:text-base lg:text-lg leading-relaxed max-w-3xl print-text-muted"
+              >
+                Class 12 Science student from Assam, India, passionate about building practical web applications, prototyping generative AI tools, and producing original Hindi &amp; Assamese digital media through Dil Se Music and multi-niche YouTube brands.
+              </p>
+
+              <!-- Hero Quick Action Buttons -->
+              <div class="no-print flex flex-wrap items-center gap-2.5 pt-2">
+                <a
+                  href="#projects"
+                  class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold bg-accent text-white shadow-sm hover:shadow transition-all"
+                >
+                  View Projects
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                  </svg>
+                </a>
+
+                <a
+                  href="#contact"
+                  class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/80 text-slate-800 dark:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
+                >
+                  Contact Me
+                </a>
+
+                <a
+                  id="hero-youtube-link"
+                  href="https://youtube.com/@dilsemusic_yt?si=KdAiHODX4JDv4FyH"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold bg-red-600 hover:bg-red-700 text-white shadow-sm transition-all"
+                >
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                  </svg>
+                  Dil Se Music / YouTube
+                </a>
+
+                <button
+                  type="button"
+                  id="hero-copy-email-btn"
+                  class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold text-accent bg-accent-soft hover:opacity-90 transition-all cursor-pointer"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184" />
+                  </svg>
+                  Copy Email
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Stats Strip -->
+          <div class="no-print grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-6 border-t border-slate-200/70 dark:border-slate-800/80">
+            <div class="flex items-center gap-3.5 p-4 rounded-2xl bg-slate-50/90 dark:bg-slate-800/50 border border-slate-200/70 dark:border-slate-700/60">
+              <div class="w-10 h-10 rounded-xl bg-accent-soft text-accent flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
+                </svg>
+              </div>
+              <div>
+                <p id="stat-projects-count" class="font-display font-bold text-lg text-slate-900 dark:text-white leading-tight">5+ Featured Projects</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Live web apps &amp; media brands</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3.5 p-4 rounded-2xl bg-slate-50/90 dark:bg-slate-800/50 border border-slate-200/70 dark:border-slate-700/60">
+              <div class="w-10 h-10 rounded-xl bg-accent-soft text-accent flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+                </svg>
+              </div>
+              <div>
+                <p class="font-display font-bold text-lg text-slate-900 dark:text-white leading-tight">AI &amp; Web Builder</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Google AI Studio &amp; JS Apps</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3.5 p-4 rounded-2xl bg-slate-50/90 dark:bg-slate-800/50 border border-slate-200/70 dark:border-slate-700/60">
+              <div class="w-10 h-10 rounded-xl bg-red-500/10 text-red-600 dark:text-red-400 flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                </svg>
+              </div>
+              <div>
+                <p class="font-display font-bold text-lg text-slate-900 dark:text-white leading-tight">YouTube Creator</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Dil Se Music &amp; Multi-Niche Brands</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+     * 3. FEATURED PROJECTS SECTION
+     * ======================================================================= -->
+    <section id="projects" class="scroll-mt-24 reveal space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-accent">Portfolio</p>
+          <h2 class="font-display font-bold text-2xl sm:text-3xl text-slate-900 dark:text-white mt-1 print-text-dark">
+            Featured Projects
+          </h2>
+        </div>
+
+        <!-- Category Filter Pills + Add Project (Edit Mode) -->
+        <div id="project-filters" class="flex flex-wrap items-center gap-2">
+          <button type="button" data-filter="All" class="filter-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer">
+            All
+          </button>
+          <button type="button" data-filter="Web & AI" class="filter-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer">
+            Web &amp; AI
+          </button>
+          <button type="button" data-filter="Digital Media" class="filter-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer">
+            Digital Media
+          </button>
+          <button
+            type="button"
+            id="open-add-project-btn"
+            class="hidden inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-accent text-white shadow-sm cursor-pointer"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+            </svg>
+            Add Project
+          </button>
+        </div>
+      </div>
+
+      <!-- Projects Grid -->
+      <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Rendered dynamically by JS -->
+      </div>
+    </section>
+
+    <!-- =======================================================================
+     * 4. SKILLS SECTION
+     * ======================================================================= -->
+    <section id="skills" class="scroll-mt-24 reveal space-y-6">
+      <div>
+        <p class="text-xs font-bold uppercase tracking-widest text-accent">Capabilities</p>
+        <h2 class="font-display font-bold text-2xl sm:text-3xl text-slate-900 dark:text-white mt-1 print-text-dark">
+          Skills &amp; Expertise
+        </h2>
+      </div>
+
+      <div id="skills-grid" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Rendered dynamically by JS -->
+      </div>
+    </section>
+
+    <!-- =======================================================================
+     * 5 & 6. EXPERIENCE TIMELINE & EDUCATION SECTION
+     * ======================================================================= -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
+
+      <!-- Experience & Milestones Timeline -->
+      <section id="experience" class="lg:col-span-7 scroll-mt-24 reveal space-y-6">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-accent">Milestones</p>
+          <h2 class="font-display font-bold text-2xl sm:text-3xl text-slate-900 dark:text-white mt-1 print-text-dark">
+            Experience &amp; Milestones
+          </h2>
+        </div>
+
+        <div id="experience-list" class="relative border-l-2 border-slate-200 dark:border-slate-800 ml-3 space-y-6">
+          <!-- Rendered dynamically by JS -->
+        </div>
+      </section>
+
+      <!-- Education Section -->
+      <section id="education" class="lg:col-span-5 scroll-mt-24 reveal space-y-6">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-accent">Academics</p>
+          <h2 class="font-display font-bold text-2xl sm:text-3xl text-slate-900 dark:text-white mt-1 print-text-dark">
+            Education
+          </h2>
+        </div>
+
+        <div class="print-card rounded-2xl bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border border-slate-200/80 dark:border-slate-800 p-6 shadow-sm space-y-4">
+          <div class="flex items-start justify-between gap-3">
+            <div class="w-11 h-11 rounded-xl bg-accent-soft text-accent flex items-center justify-center shrink-0 no-print">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
+              </svg>
+            </div>
+            <span
+              id="edu-period"
+              data-editable="true"
+              data-field="eduPeriod"
+              class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-accent-soft text-accent"
+            >
+              2025 – Present
+            </span>
+          </div>
+
+          <div class="space-y-1.5">
+            <h3
+              id="edu-title"
+              data-editable="true"
+              data-field="eduTitle"
+              class="font-display font-bold text-lg text-slate-900 dark:text-white print-text-dark"
+            >
+              Higher Secondary (Class 12 — Science Stream)
+            </h3>
+            <p
+              id="edu-location"
+              data-editable="true"
+              data-field="eduLocation"
+              class="text-sm font-medium text-slate-500 dark:text-slate-400 print-text-muted"
+            >
+              Assam, India
+            </p>
+          </div>
+
+          <p
+            id="edu-details"
+            data-editable="true"
+            data-field="eduDetails"
+            class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed print-text-muted"
+          >
+            Core academic focus on Physics, Chemistry, Mathematics, English, and Assamese, complemented by self-directed web engineering and generative AI projects.
+          </p>
+
+          <div class="flex flex-wrap gap-2 pt-1">
+            <span class="px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Physics</span>
+            <span class="px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Chemistry</span>
+            <span class="px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Mathematics</span>
+            <span class="px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">English</span>
+            <span class="px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Assamese</span>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- =======================================================================
+     * 7. CONTACT SECTION
+     * ======================================================================= -->
+    <section id="contact" class="scroll-mt-24 reveal space-y-6">
+      <div>
+        <p class="text-xs font-bold uppercase tracking-widest text-accent">Connect</p>
+        <h2 class="font-display font-bold text-2xl sm:text-3xl text-slate-900 dark:text-white mt-1 print-text-dark">
+          Get in Touch
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <!-- Direct Clickable Contact Cards -->
+        <div class="lg:col-span-5 space-y-3.5">
+          <!-- Email Card -->
+          <div class="print-card rounded-2xl bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border border-slate-200/80 dark:border-slate-800 p-4 sm:p-5 shadow-sm space-y-2">
+            <div class="flex items-center justify-between gap-2">
+              <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-400">
+                <svg class="w-4 h-4 text-accent no-print" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                </svg>
+                Email
+              </div>
+              <button
+                type="button"
+                id="copy-email-btn"
+                class="no-print inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold bg-accent-soft text-accent hover:opacity-85 transition-opacity cursor-pointer"
+              >
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184" />
+                </svg>
+                Copy
+              </button>
+            </div>
+            <a
+              id="contact-email-link"
+              href="mailto:chutiabiswajit403@gmail.com"
+              class="block font-semibold text-sm sm:text-base text-slate-900 dark:text-white hover:text-accent transition-colors break-all print-text-dark"
+            >
+              <span id="profile-email" data-editable="true" data-field="email">chutiabiswajit403@gmail.com</span>
+            </a>
+          </div>
+
+          <!-- Phone Card -->
+          <div class="print-card rounded-2xl bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border border-slate-200/80 dark:border-slate-800 p-4 sm:p-5 shadow-sm space-y-1.5">
+            <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-400">
+              <svg class="w-4 h-4 text-accent no-print" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+              </svg>
+              Phone
+            </div>
+            <a
+              id="contact-phone-link"
+              href="tel:+917086747302"
+              class="block font-semibold text-sm sm:text-base text-slate-900 dark:text-white hover:text-accent transition-colors print-text-dark"
+            >
+              <span id="profile-phone" data-editable="true" data-field="phone">+91 70867 47302</span>
+            </a>
+          </div>
+
+          <!-- Location Card -->
+          <div class="print-card rounded-2xl bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border border-slate-200/80 dark:border-slate-800 p-4 sm:p-5 shadow-sm space-y-1.5">
+            <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-400">
+              <svg class="w-4 h-4 text-accent no-print" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+              </svg>
+              Location
+            </div>
+            <p id="contact-location-display" class="font-semibold text-sm sm:text-base text-slate-900 dark:text-white print-text-dark">
+              Assam, India
+            </p>
+          </div>
+
+          <!-- YouTube Card -->
+          <a
+            id="contact-youtube-link"
+            href="https://youtube.com/@dilsemusic_yt?si=KdAiHODX4JDv4FyH"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="print-card group block rounded-2xl bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border border-slate-200/80 dark:border-slate-800 hover:border-red-500/50 p-4 sm:p-5 shadow-sm transition-all space-y-1.5"
+          >
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-red-600 dark:text-red-400">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                </svg>
+                YouTube Channel
+              </div>
+              <svg class="no-print w-4 h-4 text-slate-400 group-hover:text-red-500 group-hover:translate-x-0.5 transition-all" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+              </svg>
+            </div>
+            <p class="font-semibold text-sm sm:text-base text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors print-text-dark">
+              Dil Se Music (@dilsemusic_yt)
+            </p>
+          </a>
+        </div>
+
+        <!-- Validated Interactive Contact Form -->
+        <div id="contact-form-wrapper" class="lg:col-span-7 rounded-3xl bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border border-slate-200/80 dark:border-slate-800 p-6 sm:p-8 shadow-sm">
+          <div class="mb-5">
+            <h3 class="font-display font-bold text-lg text-slate-900 dark:text-white">Send a Message</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-400 mt-0.5">Have a project idea, collaboration, or question? Drop a note below.</p>
+          </div>
+
+          <form id="contact-form" novalidate class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="contact-name" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Your Name *</label>
+                <input
+                  id="contact-name"
+                  name="name"
+                  type="text"
+                  required
+                  placeholder="Your full name"
+                  class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/40"
+                />
+                <p id="error-name" class="hidden text-xs text-rose-500 mt-1">Please enter your name (at least 2 characters).</p>
+              </div>
+              <div>
+                <label for="contact-email" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Email Address *</label>
+                <input
+                  id="contact-email"
+                  name="email"
+                  type="email"
+                  required
+                  placeholder="you@example.com"
+                  class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/40"
+                />
+                <p id="error-email" class="hidden text-xs text-rose-500 mt-1">Please enter a valid email address.</p>
+              </div>
+            </div>
+
+            <div>
+              <label for="contact-subject" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Subject *</label>
+              <input
+                id="contact-subject"
+                name="subject"
+                type="text"
+                required
+                placeholder="Web project, AI app, or music collaboration"
+                class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/40"
+              />
+              <p id="error-subject" class="hidden text-xs text-rose-500 mt-1">Please enter a subject.</p>
+            </div>
+
+            <div>
+              <label for="contact-message" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Message *</label>
+              <textarea
+                id="contact-message"
+                name="message"
+                rows="4"
+                required
+                placeholder="Share a few details about what you'd like to build or discuss..."
+                class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/40 resize-y"
+              ></textarea>
+              <p id="error-message" class="hidden text-xs text-rose-500 mt-1">Please enter a message (at least 10 characters).</p>
+            </div>
+
+            <div class="pt-1">
+              <button
+                type="submit"
+                class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold bg-accent text-white shadow-sm hover:shadow transition-all cursor-pointer"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+                </svg>
+                Send Message
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================================
+   * FOOTER
+   * ========================================================================= -->
+  <footer class="no-print border-t border-slate-200/80 dark:border-slate-800/80 bg-white dark:bg-slate-950 py-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+      <p>&copy; <span id="footer-year">2026</span> <span id="footer-name">BISWAJIT CHUTIA</span>. All rights reserved.</p>
+      <div class="flex items-center gap-4">
+        <a href="mailto:chutiabiswajit403@gmail.com" class="hover:text-accent transition-colors">Email</a>
+        <a href="tel:+917086747302" class="hover:text-accent transition-colors">Phone</a>
+        <a href="https://youtube.com/@dilsemusic_yt?si=KdAiHODX4JDv4FyH" target="_blank" rel="noopener noreferrer" class="hover:text-red-500 transition-colors">Dil Se Music</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+   * FLOATING LIVE EDIT MODE TOOLBAR
+   * ========================================================================= -->
+  <div
+    id="edit-toolbar"
+    class="hidden fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[94%] max-w-2xl rounded-2xl bg-slate-900/95 dark:bg-slate-800/95 text-white backdrop-blur-md border border-slate-700 shadow-2xl px-4 py-3 flex flex-wrap items-center justify-between gap-3"
+  >
+    <div class="flex items-center gap-2 text-xs sm:text-sm font-medium">
+      <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span>Edit Mode</span>
+      <span class="hidden sm:inline text-slate-400 text-xs">— Click highlighted text to edit</span>
+    </div>
+    <div class="flex flex-wrap items-center gap-2">
+      <button type="button" id="toolbar-add-project-btn" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-700 hover:bg-slate-600 transition-colors cursor-pointer">
+        + Add Project
+      </button>
+      <button type="button" id="toolbar-reset-btn" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-rose-500/20 text-rose-300 hover:bg-rose-500/30 transition-colors cursor-pointer">
+        Reset to Defaults
+      </button>
+      <button type="button" id="toolbar-save-btn" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-accent text-white shadow cursor-pointer">
+        Save &amp; Exit
+      </button>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+   * PROJECT DETAIL MODAL
+   * ========================================================================= -->
+  <div id="project-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm" role="dialog" aria-modal="true">
+    <div class="w-full max-w-xl rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden">
+      <div class="p-6 sm:p-8 space-y-5">
+        <div class="flex items-start justify-between gap-4">
+          <div class="space-y-2">
+            <span id="modal-project-category" class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-accent-soft text-accent">
+              Web &amp; AI
+            </span>
+            <h3 id="modal-project-title" class="font-display font-bold text-xl sm:text-2xl text-slate-900 dark:text-white">
+              Project Title
+            </h3>
+          </div>
+          <button type="button" id="close-project-modal" aria-label="Close modal" class="p-2 rounded-xl text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <p id="modal-project-desc" class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed"></p>
+
+        <div id="modal-project-tags" class="flex flex-wrap gap-2"></div>
+
+        <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-slate-200 dark:border-slate-800">
+          <div id="modal-project-links" class="flex items-center gap-2"></div>
+          <button type="button" id="modal-delete-project-btn" class="hidden px-3.5 py-2 rounded-xl text-xs font-semibold bg-rose-50 dark:bg-rose-950/50 text-rose-600 dark:text-rose-400 hover:bg-rose-100 dark:hover:bg-rose-900/50 transition-colors cursor-pointer">
+            Delete Project
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+   * ADD PROJECT MODAL
+   * ========================================================================= -->
+  <div id="add-project-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm" role="dialog" aria-modal="true">
+    <div class="w-full max-w-lg rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl p-6 sm:p-8 space-y-5">
+      <div class="flex items-center justify-between">
+        <h3 class="font-display font-bold text-xl text-slate-900 dark:text-white">Add New Project</h3>
+        <button type="button" id="close-add-project-modal" aria-label="Close modal" class="p-2 rounded-xl text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <form id="add-project-form" class="space-y-4">
+        <div>
+          <label for="new-proj-title" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Project Title *</label>
+          <input id="new-proj-title" type="text" required placeholder="e.g., AI Study Quiz Generator" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white" />
+        </div>
+        <div>
+          <label for="new-proj-category" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Category *</label>
+          <select id="new-proj-category" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white">
+            <option value="Web & AI">Web &amp; AI</option>
+            <option value="Digital Media">Digital Media</option>
+          </select>
+        </div>
+        <div>
+          <label for="new-proj-desc" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Description *</label>
+          <textarea id="new-proj-desc" rows="3" required placeholder="Briefly describe what you built and its key features..." class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white"></textarea>
+        </div>
+        <div>
+          <label for="new-proj-tags" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Tags (comma separated)</label>
+          <input id="new-proj-tags" type="text" placeholder="HTML5, JavaScript, Google AI Studio" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white" />
+        </div>
+        <div>
+          <label for="new-proj-link" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">External URL (optional)</label>
+          <input id="new-proj-link" type="url" placeholder="https://example.com" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm text-slate-900 dark:text-white" />
+        </div>
+        <div class="flex justify-end gap-2 pt-2">
+          <button type="button" id="cancel-add-project" class="px-4 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer">Cancel</button>
+          <button type="submit" class="px-5 py-2 rounded-xl text-sm font-semibold bg-accent text-white shadow-sm cursor-pointer">Add Project</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+   * RESET CONFIRMATION MODAL (No native confirm())
+   * ========================================================================= -->
+  <div id="reset-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm" role="dialog" aria-modal="true">
+    <div class="w-full max-w-sm rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl p-6 space-y-4">
+      <h3 class="font-display font-bold text-lg text-slate-900 dark:text-white">Reset to Defaults?</h3>
+      <p class="text-sm text-slate-600 dark:text-slate-300">
+        This will restore BISWAJIT CHUTIA's default profile, projects, and timeline, overwriting any custom edits saved in your browser.
+      </p>
+      <div class="flex justify-end gap-2 pt-2">
+        <button type="button" id="cancel-reset-btn" class="px-4 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer">Cancel</button>
+        <button type="button" id="confirm-reset-btn" class="px-4 py-2 rounded-xl text-sm font-semibold bg-rose-600 hover:bg-rose-700 text-white cursor-pointer">Yes, Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toast-container" class="fixed top-20 right-4 z-50 flex flex-col gap-2 max-w-sm pointer-events-none"></div>
+
+  <!-- =========================================================================
+   * APPLICATION JAVASCRIPT (Zero external framework dependencies)
+   * ========================================================================= -->
+  <script>
+    (function () {
+      'use strict';
+
+      /* -----------------------------------------------------------------------
+       * 1. STATE & BAKED-IN DEFAULTS (Fresh localStorage key: biswajit_resume_v2)
+       * ----------------------------------------------------------------------- */
+      const STORAGE_KEY = 'biswajit_resume_v2';
+      const THEME_KEY = 'biswajit_resume_theme_v2';
+      const ACCENT_KEY = 'biswajit_resume_accent_v2';
+      const YOUTUBE_URL = 'https://youtube.com/@dilsemusic_yt?si=KdAiHODX4JDv4FyH';
+
+      const DEFAULT_STATE = {
+        profile: {
+          name: 'BISWAJIT CHUTIA',
+          headline: 'Class 12 Science Student • Web & AI Builder • Digital Media Creator',
+          location: 'Assam, India',
+          about: 'Class 12 Science student from Assam, India, passionate about building practical web applications, prototyping generative AI tools, and producing original Hindi & Assamese digital media through Dil Se Music and multi-niche YouTube brands.',
+          email: 'chutiabiswajit403@gmail.com',
+          phone: '+91 70867 47302',
+          youtube: YOUTUBE_URL,
+          eduTitle: 'Higher Secondary (Class 12 — Science Stream)',
+          eduLocation: 'Assam, India',
+          eduPeriod: '2025 – Present',
+          eduDetails: 'Core academic focus on Physics, Chemistry, Mathematics, English, and Assamese, complemented by self-directed web engineering and generative AI projects.',
+        },
+        projects: [
+          {
+            id: 'proj-1',
+            title: 'AI-Powered Study Companion',
+            category: 'Web & AI',
+            description: 'Built in Google AI Studio for an inter-state level competition; analyzes uploaded topic images or text to generate summaries, structured notes, Q&A, and mock MCQs for Board, JEE, NEET, and UPSC prep.',
+            tags: ['Google AI Studio', 'Multimodal AI', 'EdTech', 'Board / JEE / NEET / UPSC'],
+            link: '',
+            linkLabel: '',
+          },
+          {
+            id: 'proj-2',
+            title: 'Dil Se Music — Original LoFi & Music Label',
+            category: 'Digital Media',
+            description: 'Original Hindi & Assamese LoFi tracks, patriotic anthems, and creator tributes paired with custom 16:9 cinematic thumbnails and SEO-optimized YouTube releases.',
+            tags: ['Hindi & Assamese LoFi', 'AI Music Production', '16:9 Thumbnails', 'YouTube SEO'],
+            link: YOUTUBE_URL,
+            linkLabel: 'Visit Dil Se Music on YouTube',
+            isYouTube: true,
+          },
+          {
+            id: 'proj-3',
+            title: 'Custom Web AI Chat Application',
+            category: 'Web & AI',
+            description: 'Full-featured web chat interface with AI image generation, file upload, drag-and-drop attachment support, and persistent chat history.',
+            tags: ['HTML5 / CSS3 / JS', 'AI Image Gen', 'Drag & Drop', 'Persistent History'],
+            link: '',
+            linkLabel: '',
+          },
+          {
+            id: 'proj-4',
+            title: 'E-Commerce Storefront & Admin Panel',
+            category: 'Web & AI',
+            description: 'Responsive front-end e-commerce website template featuring product catalog, cart flow, and an integrated admin management dashboard.',
+            tags: ['Responsive UI', 'Product Catalog', 'Cart Flow', 'Admin Dashboard'],
+            link: '',
+            linkLabel: '',
+          },
+          {
+            id: 'proj-5',
+            title: 'Multi-Niche YouTube Brand Systems',
+            category: 'Digital Media',
+            description: 'End-to-end channel branding, custom logos, high-CTR thumbnails, banners, and Shorts strategy across Gumnam TV, Grow Pulse, and Motivation Boost.',
+            tags: ['Gumnam TV', 'Grow Pulse', 'Motivation Boost', 'Branding & Shorts'],
+            link: '',
+            linkLabel: '',
+          },
+        ],
+        skills: [
+          {
+            group: 'Web & AI Development',
+            icon: 'code',
+            items: [
+              { name: 'HTML5 / CSS3 / JS', level: 92 },
+              { name: 'Google AI Studio', level: 94 },
+              { name: 'Generative AI Workflows', level: 93 },
+              { name: 'UI Prototyping', level: 88 },
+            ],
+          },
+          {
+            group: 'Digital Media & Production',
+            icon: 'sparkles',
+            items: [
+              { name: 'AI Music & Audio Production', level: 91 },
+              { name: 'Thumbnail & Visual Design', level: 90 },
+              { name: 'YouTube SEO & Analytics', level: 88 },
+              { name: 'Lyric Writing', level: 89 },
+            ],
+          },
+          {
+            group: 'Academic Foundations',
+            icon: 'academic',
+            items: [
+              { name: 'Physics', level: 88 },
+              { name: 'Chemistry', level: 86 },
+              { name: 'Mathematics', level: 91 },
+              { name: 'Technical Documentation', level: 87 },
+            ],
+          },
+        ],
+        experience: [
+          {
+            id: 'exp-1',
+            role: 'Inter-State Competition AI Study App',
+            period: '2026',
+            summary: 'Designed and prototyped an AI-powered study companion in Google AI Studio for Board, JEE, NEET, and UPSC preparation, supporting image and text analysis.',
+          },
+          {
+            id: 'exp-2',
+            role: 'Dil Se Music Releases & 80th Independence Day Anthem',
+            period: '2026',
+            summary: 'Produced and released original Hindi & Assamese LoFi tracks, creator tributes, and a special 80th Independence Day patriotic anthem on YouTube.',
+          },
+          {
+            id: 'exp-3',
+            role: 'Web AI Chat & E-Commerce Builds',
+            period: '2025 – 2026',
+            summary: 'Engineered a full-featured web AI chat application with image generation and file uploads, alongside a responsive e-commerce storefront and admin panel.',
+          },
+          {
+            id: 'exp-4',
+            role: 'Multi-Channel YouTube Branding',
+            period: '2025 – 2026',
+            summary: 'Created cohesive visual identities, custom logos, banners, high-CTR thumbnails, and Shorts growth systems for Gumnam TV, Grow Pulse, and Motivation Boost.',
+          },
+        ],
+      };
+
+      let appState = loadState();
+      let isEditMode = false;
+      let activeFilter = 'All';
+      let currentModalProjectId = null;
+
+      /* -----------------------------------------------------------------------
+       * 2. PERSISTENCE HELPERS (Safe localStorage with try/catch)
+       * ----------------------------------------------------------------------- */
+      function deepClone(obj) {
+        return JSON.parse(JSON.stringify(obj));
+      }
+
+      function loadState() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return deepClone(DEFAULT_STATE);
+          const parsed = JSON.parse(raw);
+          return {
+            profile: { ...DEFAULT_STATE.profile, ...(parsed.profile || {}) },
+            projects: Array.isArray(parsed.projects) ? parsed.projects : deepClone(DEFAULT_STATE.projects),
+            skills: Array.isArray(parsed.skills) ? parsed.skills : deepClone(DEFAULT_STATE.skills),
+            experience: Array.isArray(parsed.experience) ? parsed.experience : deepClone(DEFAULT_STATE.experience),
+          };
+        } catch (err) {
+          console.warn('Could not read saved resume state:', err);
+          return deepClone(DEFAULT_STATE);
+        }
+      }
+
+      function saveState() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+          return true;
+        } catch (err) {
+          console.warn('Could not persist resume state:', err);
+          return false;
+        }
+      }
+
+      function escapeHTML(str) {
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      /* -----------------------------------------------------------------------
+       * 3. TOAST NOTIFICATIONS
+       * ----------------------------------------------------------------------- */
+      function showToast(message, type = 'success') {
+        const container = document.getElementById('toast-container');
+        const toast = document.createElement('div');
+        const bgClass =
+          type === 'error'
+            ? 'bg-rose-600 text-white'
+            : type === 'info'
+            ? 'bg-slate-900 dark:bg-slate-800 text-white'
+            : 'bg-emerald-600 text-white';
+
+        toast.className = `pointer-events-auto flex items-center gap-2.5 px-4 py-3 rounded-2xl shadow-lg text-sm font-medium transform transition-all duration-300 translate-x-6 opacity-0 ${bgClass}`;
+        toast.innerHTML = `
+          <span class="shrink-0">
+            ${
+              type === 'error'
+                ? '<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"/></svg>'
+                : '<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>'
+            }
+          </span>
+          <span>${escapeHTML(message)}</span>
+        `;
+
+        container.appendChild(toast);
+        requestAnimationFrame(() => toast.classList.remove('translate-x-6', 'opacity-0'));
+
+        setTimeout(() => {
+          toast.classList.add('translate-x-6', 'opacity-0');
+          setTimeout(() => toast.remove(), 300);
+        }, 3200);
+      }
+
+      /* -----------------------------------------------------------------------
+       * 4. RENDERING FUNCTIONS
+       * ----------------------------------------------------------------------- */
+      function getInitials(name) {
+        const parts = (name || '').trim().split(/\s+/).filter(Boolean);
+        if (parts.length === 0) return 'BC';
+        if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+        return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+      }
+
+      function sanitizePhoneForTel(phone) {
+        return (phone || '').replace(/[^\d+]/g, '');
+      }
+
+      function renderProfile() {
+        const p = appState.profile;
+        const initials = getInitials(p.name);
+
+        document.getElementById('profile-name').textContent = p.name;
+        document.getElementById('nav-brand-name').textContent = p.name;
+        document.getElementById('footer-name').textContent = p.name;
+        document.getElementById('nav-initials').textContent = initials;
+        document.getElementById('hero-avatar').textContent = initials;
+        document.title = `${p.name} — Resume & Portfolio`;
+
+        document.getElementById('profile-headline').textContent = p.headline;
+        document.getElementById('profile-location').textContent = p.location;
+        document.getElementById('contact-location-display').textContent = p.location;
+        document.getElementById('profile-about').textContent = p.about;
+
+        // Email & mailto: link
+        document.getElementById('profile-email').textContent = p.email;
+        document.getElementById('contact-email-link').href = `mailto:${p.email}`;
+
+        // Phone & tel: link
+        document.getElementById('profile-phone').textContent = p.phone;
+        document.getElementById('contact-phone-link').href = `tel:${sanitizePhoneForTel(p.phone)}`;
+
+        // YouTube links
+        const yt = p.youtube || YOUTUBE_URL;
+        document.getElementById('hero-youtube-link').href = yt;
+        document.getElementById('contact-youtube-link').href = yt;
+
+        // Print-only header block
+        document.getElementById('print-email').textContent = p.email;
+        document.getElementById('print-phone').textContent = p.phone;
+        document.getElementById('print-location').textContent = p.location;
+        document.getElementById('print-youtube').textContent = yt;
+
+        // Education
+        document.getElementById('edu-title').textContent = p.eduTitle;
+        document.getElementById('edu-location').textContent = p.eduLocation;
+        document.getElementById('edu-period').textContent = p.eduPeriod;
+        document.getElementById('edu-details').textContent = p.eduDetails;
+      }
+
+      function renderProjects() {
+        const grid = document.getElementById('projects-grid');
+        const filtered =
+          activeFilter === 'All'
+            ? appState.projects
+            : appState.projects.filter((p) => p.category === activeFilter);
+
+        document.getElementById('stat-projects-count').textContent = `${appState.projects.length}+ Featured Projects`;
+
+        // Update filter pill styling
+        document.querySelectorAll('.filter-tab').forEach((btn) => {
+          const isActive = btn.dataset.filter === activeFilter;
+          btn.className = isActive
+            ? 'filter-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-accent text-white shadow-sm transition-all cursor-pointer'
+            : 'filter-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all cursor-pointer';
+        });
+
+        if (filtered.length === 0) {
+          grid.innerHTML = `
+            <div class="col-span-full text-center py-12 rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 text-slate-500 dark:text-slate-400">
+              No projects found in this category yet.
+            </div>
+          `;
+          return;
+        }
+
+        grid.innerHTML = filtered
+          .map((proj) => {
+            const directLinkHTML = proj.link
+              ? `
+                <div class="pt-1">
+                  <a
+                    href="${escapeHTML(proj.link)}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="project-external-link no-print inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold ${
+                      proj.isYouTube
+                        ? 'bg-red-600 hover:bg-red-700 text-white'
+                        : 'bg-accent text-white'
+                    } shadow-sm transition-all"
+                  >
+                    ${
+                      proj.isYouTube
+                        ? '<svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>'
+                        : '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>'
+                    }
+                    ${escapeHTML(proj.linkLabel || 'Visit Project')}
+                  </a>
+                </div>
+              `
+              : '';
+
+            return `
+              <article
+                data-project-id="${escapeHTML(proj.id)}"
+                class="project-card print-card group relative rounded-2xl bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border border-slate-200/80 dark:border-slate-800 p-6 shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all flex flex-col justify-between gap-4 cursor-pointer"
+              >
+                <div class="space-y-3">
+                  <div class="flex items-center justify-between gap-2">
+                    <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-semibold bg-accent-soft text-accent">
+                      ${escapeHTML(proj.category)}
+                    </span>
+                    <span class="no-print text-xs font-medium text-slate-400 group-hover:text-accent transition-colors inline-flex items-center gap-1">
+                      Details
+                      <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+                      </svg>
+                    </span>
+                  </div>
+
+                  <h3
+                    data-editable="true"
+                    data-proj-field="title"
+                    data-proj-id="${escapeHTML(proj.id)}"
+                    class="font-display font-bold text-lg sm:text-xl text-slate-900 dark:text-white group-hover:text-accent transition-colors print-text-dark"
+                  >
+                    ${escapeHTML(proj.title)}
+                  </h3>
+
+                  <p
+                    data-editable="true"
+                    data-proj-field="description"
+                    data-proj-id="${escapeHTML(proj.id)}"
+                    class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed print-text-muted"
+                  >
+                    ${escapeHTML(proj.description)}
+                  </p>
+
+                  ${directLinkHTML}
+                </div>
+
+                <div class="flex flex-wrap gap-1.5 pt-3 border-t border-slate-100 dark:border-slate-800/80">
+                  ${(proj.tags || [])
+                    .map(
+                      (tag) => `
+                    <span class="px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+                      ${escapeHTML(tag)}
+                    </span>
+                  `
+                    )
+                    .join('')}
+                </div>
+              </article>
+            `;
+          })
+          .join('');
+
+        applyEditModeToDOM();
+      }
+
+      function renderSkills() {
+        const grid = document.getElementById('skills-grid');
+        const icons = {
+          code: '<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/></svg>',
+          sparkles: '<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>',
+          academic: '<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>',
+        };
+
+        grid.innerHTML = appState.skills
+          .map(
+            (category) => `
+          <div class="print-card rounded-2xl bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border border-slate-200/80 dark:border-slate-800 p-6 shadow-sm space-y-5">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-accent-soft text-accent flex items-center justify-center shrink-0 no-print">
+                ${icons[category.icon] || icons.code}
+              </div>
+              <h3 class="font-display font-bold text-base sm:text-lg text-slate-900 dark:text-white print-text-dark">
+                ${escapeHTML(category.group)}
+              </h3>
+            </div>
+
+            <div class="space-y-3.5">
+              ${category.items
+                .map(
+                  (skill) => `
+                <div class="space-y-1.5">
+                  <div class="flex items-center justify-between text-xs sm:text-sm">
+                    <span class="font-medium text-slate-700 dark:text-slate-200 print-text-dark">${escapeHTML(skill.name)}</span>
+                    <span class="font-semibold text-slate-400 dark:text-slate-500 text-xs">${skill.level}%</span>
+                  </div>
+                  <div class="skill-bar-track w-full h-2 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
+                    <div class="skill-bar-fill h-full rounded-full bg-accent-static transition-all duration-700" style="width: ${skill.level}%"></div>
+                  </div>
+                </div>
+              `
+                )
+                .join('')}
+            </div>
+          </div>
+        `
+          )
+          .join('');
+      }
+
+      function renderExperience() {
+        const list = document.getElementById('experience-list');
+        list.innerHTML = appState.experience
+          .map(
+            (exp) => `
+          <div class="relative pl-7">
+            <span class="absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-accent-static ring-4 ring-slate-50 dark:ring-slate-950"></span>
+            <div class="print-card rounded-2xl bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border border-slate-200/80 dark:border-slate-800 p-5 shadow-sm space-y-1.5">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <h3
+                  data-editable="true"
+                  data-exp-field="role"
+                  data-exp-id="${escapeHTML(exp.id)}"
+                  class="font-display font-bold text-base sm:text-lg text-slate-900 dark:text-white print-text-dark"
+                >
+                  ${escapeHTML(exp.role)}
+                </h3>
+                <span
+                  data-editable="true"
+                  data-exp-field="period"
+                  data-exp-id="${escapeHTML(exp.id)}"
+                  class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-accent-soft text-accent"
+                >
+                  ${escapeHTML(exp.period)}
+                </span>
+              </div>
+              <p
+                data-editable="true"
+                data-exp-field="summary"
+                data-exp-id="${escapeHTML(exp.id)}"
+                class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed print-text-muted"
+              >
+                ${escapeHTML(exp.summary)}
+              </p>
+            </div>
+          </div>
+        `
+          )
+          .join('');
+
+        applyEditModeToDOM();
+      }
+
+      /* -----------------------------------------------------------------------
+       * 5. LIVE EDIT MODE LOGIC
+       * ----------------------------------------------------------------------- */
+      function setEditMode(enabled) {
+        isEditMode = enabled;
+        document.body.classList.toggle('edit-mode-active', isEditMode);
+
+        const editBtn = document.getElementById('toggle-edit-btn');
+        const editLabel = document.getElementById('edit-btn-label');
+        const toolbar = document.getElementById('edit-toolbar');
+        const addBtn = document.getElementById('open-add-project-btn');
+
+        if (isEditMode) {
+          editBtn.classList.add('border-accent', 'text-accent', 'bg-accent-soft');
+          editLabel.textContent = 'Editing...';
+          toolbar.classList.remove('hidden');
+          addBtn.classList.remove('hidden');
+          showToast('Edit Mode active. Click highlighted text to edit in place.', 'info');
+        } else {
+          editBtn.classList.remove('border-accent', 'text-accent', 'bg-accent-soft');
+          editLabel.textContent = 'Edit Mode';
+          toolbar.classList.add('hidden');
+          addBtn.classList.add('hidden');
+        }
+
+        applyEditModeToDOM();
+      }
+
+      function applyEditModeToDOM() {
+        document.querySelectorAll('[data-editable="true"]').forEach((el) => {
+          el.setAttribute('contenteditable', isEditMode ? 'true' : 'false');
+        });
+      }
+
+      function captureEditsFromDOM() {
+        document.querySelectorAll('[data-field]').forEach((el) => {
+          const key = el.dataset.field;
+          if (key && key in appState.profile) {
+            appState.profile[key] = el.textContent.trim();
+          }
+        });
+
+        document.querySelectorAll('[data-proj-id]').forEach((el) => {
+          const id = el.dataset.projId;
+          const field = el.dataset.projField;
+          const proj = appState.projects.find((p) => p.id === id);
+          if (proj && field) {
+            proj[field] = el.textContent.trim();
+          }
+        });
+
+        document.querySelectorAll('[data-exp-id]').forEach((el) => {
+          const id = el.dataset.expId;
+          const field = el.dataset.expField;
+          const exp = appState.experience.find((e) => e.id === id);
+          if (exp && field) {
+            exp[field] = el.textContent.trim();
+          }
+        });
+      }
+
+      /* -----------------------------------------------------------------------
+       * 6. MODALS
+       * ----------------------------------------------------------------------- */
+      function openProjectModal(projectId) {
+        const proj = appState.projects.find((p) => p.id === projectId);
+        if (!proj) return;
+        currentModalProjectId = projectId;
+
+        document.getElementById('modal-project-category').textContent = proj.category;
+        document.getElementById('modal-project-title').textContent = proj.title;
+        document.getElementById('modal-project-desc').textContent = proj.description;
+
+        document.getElementById('modal-project-tags').innerHTML = (proj.tags || [])
+          .map(
+            (t) =>
+              `<span class="px-3 py-1 rounded-xl text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">${escapeHTML(t)}</span>`
+          )
+          .join('');
+
+        const linksEl = document.getElementById('modal-project-links');
+        if (proj.link) {
+          linksEl.innerHTML = `
+            <a href="${escapeHTML(proj.link)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold ${
+              proj.isYouTube ? 'bg-red-600 hover:bg-red-700 text-white' : 'bg-accent text-white'
+            } shadow-sm transition-colors">
+              ${escapeHTML(proj.linkLabel || 'Visit Project')}
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/>
+              </svg>
+            </a>
+          `;
+        } else {
+          linksEl.innerHTML = `<span class="text-xs text-slate-400">Featured Portfolio Build</span>`;
+        }
+
+        document.getElementById('modal-delete-project-btn').classList.toggle('hidden', !isEditMode);
+        document.getElementById('project-modal').classList.remove('hidden');
+      }
+
+      function closeModal(id) {
+        document.getElementById(id).classList.add('hidden');
+      }
+
+      /* -----------------------------------------------------------------------
+       * 7. THEME & ACCENT MANAGEMENT
+       * ----------------------------------------------------------------------- */
+      function initThemeAndAccent() {
+        try {
+          const savedTheme = localStorage.getItem(THEME_KEY);
+          const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            document.documentElement.classList.add('dark');
+          }
+          const savedAccent = localStorage.getItem(ACCENT_KEY) || 'blue';
+          applyAccent(savedAccent, false);
+        } catch (err) {
+          console.warn('Theme initialization fallback:', err);
+        }
+      }
+
+      function applyAccent(color, persist = true) {
+        if (color === 'blue') {
+          document.documentElement.removeAttribute('data-accent');
+        } else {
+          document.documentElement.setAttribute('data-accent', color);
+        }
+        if (persist) {
+          try {
+            localStorage.setItem(ACCENT_KEY, color);
+          } catch (e) {}
+        }
+      }
+
+      /* -----------------------------------------------------------------------
+       * 8. IFRAME-SAFE CLIPBOARD COPY
+       * ----------------------------------------------------------------------- */
+      function copyTextToClipboard(text) {
+        try {
+          const textarea = document.createElement('textarea');
+          textarea.value = text;
+          textarea.setAttribute('readonly', '');
+          textarea.style.position = 'fixed';
+          textarea.style.top = '-9999px';
+          textarea.style.opacity = '0';
+          document.body.appendChild(textarea);
+          textarea.select();
+          textarea.setSelectionRange(0, textarea.value.length);
+          const successful = document.execCommand('copy');
+          document.body.removeChild(textarea);
+          return successful;
+        } catch (err) {
+          console.warn('Clipboard copy failed:', err);
+          return false;
+        }
+      }
+
+      function handleCopyEmail() {
+        const email = document.getElementById('profile-email').textContent.trim();
+        const ok = copyTextToClipboard(email);
+        if (ok) {
+          showToast(`Copied "${email}" to clipboard!`);
+        } else {
+          showToast('Unable to copy automatically. Please select and copy.', 'error');
+        }
+      }
+
+      /* -----------------------------------------------------------------------
+       * 9. EVENT LISTENERS
+       * ----------------------------------------------------------------------- */
+      function setupEventListeners() {
+        // Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const iconOpen = document.getElementById('hamburger-open');
+        const iconClose = document.getElementById('hamburger-close');
+
+        mobileBtn.addEventListener('click', () => {
+          const isOpen = !mobileMenu.classList.contains('hidden');
+          mobileMenu.classList.toggle('hidden', isOpen);
+          iconOpen.classList.toggle('hidden', !isOpen);
+          iconClose.classList.toggle('hidden', isOpen);
+          mobileBtn.setAttribute('aria-expanded', String(!isOpen));
+        });
+
+        document.querySelectorAll('.mobile-nav-link').forEach((link) => {
+          link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            iconOpen.classList.remove('hidden');
+            iconClose.classList.add('hidden');
+            mobileBtn.setAttribute('aria-expanded', 'false');
+          });
+        });
+
+        // Theme Toggle
+        document.getElementById('theme-toggle-btn').addEventListener('click', () => {
+          const isDark = document.documentElement.classList.toggle('dark');
+          try {
+            localStorage.setItem(THEME_KEY, isDark ? 'dark' : 'light');
+          } catch (e) {}
+        });
+
+        // Accent Switcher Dropdown
+        const accentBtn = document.getElementById('accent-picker-btn');
+        const accentDropdown = document.getElementById('accent-dropdown');
+
+        accentBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          accentDropdown.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('.accent-option').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            applyAccent(btn.dataset.setAccent, true);
+            accentDropdown.classList.add('hidden');
+            showToast(`Accent theme switched to ${btn.textContent.trim()}`, 'info');
+          });
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!document.getElementById('accent-picker-wrapper').contains(e.target)) {
+            accentDropdown.classList.add('hidden');
+          }
+        });
+
+        // Print / Save as PDF
+        document.getElementById('print-btn').addEventListener('click', () => {
+          if (isEditMode) {
+            captureEditsFromDOM();
+            saveState();
+            renderProfile();
+            setEditMode(false);
+          }
+          window.print();
+        });
+
+        // Edit Mode Toggle & Toolbar
+        document.getElementById('toggle-edit-btn').addEventListener('click', () => {
+          if (isEditMode) {
+            captureEditsFromDOM();
+            saveState();
+            renderProfile();
+            setEditMode(false);
+            showToast('Changes saved locally!');
+          } else {
+            setEditMode(true);
+          }
+        });
+
+        document.getElementById('toolbar-save-btn').addEventListener('click', () => {
+          captureEditsFromDOM();
+          saveState();
+          renderProfile();
+          setEditMode(false);
+          showToast('All changes saved to your browser!');
+        });
+
+        // Prevent clicking mailto/tel links from navigating while editing their text
+        ['contact-email-link', 'contact-phone-link'].forEach((id) => {
+          document.getElementById(id).addEventListener('click', (e) => {
+            if (isEditMode) e.preventDefault();
+          });
+        });
+
+        // Reset Confirmation Modal
+        document.getElementById('toolbar-reset-btn').addEventListener('click', () => {
+          document.getElementById('reset-modal').classList.remove('hidden');
+        });
+        document.getElementById('cancel-reset-btn').addEventListener('click', () => closeModal('reset-modal'));
+        document.getElementById('confirm-reset-btn').addEventListener('click', () => {
+          appState = deepClone(DEFAULT_STATE);
+          try {
+            localStorage.removeItem(STORAGE_KEY);
+          } catch (e) {}
+          renderProfile();
+          renderProjects();
+          renderSkills();
+          renderExperience();
+          closeModal('reset-modal');
+          setEditMode(false);
+          showToast('Resume restored to default details.', 'info');
+        });
+
+        // Add Project Modal
+        const openAddProject = () => {
+          document.getElementById('add-project-form').reset();
+          document.getElementById('add-project-modal').classList.remove('hidden');
+        };
+        document.getElementById('toolbar-add-project-btn').addEventListener('click', openAddProject);
+        document.getElementById('open-add-project-btn').addEventListener('click', openAddProject);
+        document.getElementById('close-add-project-modal').addEventListener('click', () => closeModal('add-project-modal'));
+        document.getElementById('cancel-add-project').addEventListener('click', () => closeModal('add-project-modal'));
+
+        document.getElementById('add-project-form').addEventListener('submit', (e) => {
+          e.preventDefault();
+          const title = document.getElementById('new-proj-title').value.trim();
+          const category = document.getElementById('new-proj-category').value;
+          const description = document.getElementById('new-proj-desc').value.trim();
+          const tagsRaw = document.getElementById('new-proj-tags').value;
+          const link = document.getElementById('new-proj-link').value.trim();
+
+          if (!title || !description) {
+            showToast('Please enter both a project title and description.', 'error');
+            return;
+          }
+
+          appState.projects.unshift({
+            id: 'proj-' + Date.now(),
+            title,
+            category,
+            description,
+            tags: tagsRaw
+              .split(',')
+              .map((t) => t.trim())
+              .filter(Boolean),
+            link,
+            linkLabel: link ? 'Visit Project' : '',
+            isYouTube: /youtube\.com|youtu\.be/i.test(link),
+          });
+
+          saveState();
+          renderProjects();
+          closeModal('add-project-modal');
+          showToast('Project added to your portfolio!');
+        });
+
+        // Project Category Filters
+        document.querySelectorAll('.filter-tab').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            if (isEditMode) captureEditsFromDOM();
+            activeFilter = btn.dataset.filter;
+            renderProjects();
+          });
+        });
+
+        // Project Card Click -> Open Modal (ignore external link buttons & editable fields in Edit Mode)
+        document.getElementById('projects-grid').addEventListener('click', (e) => {
+          if (e.target.closest('.project-external-link')) return;
+          if (isEditMode && e.target.closest('[data-editable="true"]')) return;
+          const card = e.target.closest('.project-card');
+          if (card) openProjectModal(card.dataset.projectId);
+        });
+
+        document.getElementById('close-project-modal').addEventListener('click', () => closeModal('project-modal'));
+        document.getElementById('modal-delete-project-btn').addEventListener('click', () => {
+          if (!currentModalProjectId) return;
+          appState.projects = appState.projects.filter((p) => p.id !== currentModalProjectId);
+          saveState();
+          renderProjects();
+          closeModal('project-modal');
+          showToast('Project removed.', 'info');
+        });
+
+        // Backdrop & Escape key modal dismissal
+        ['project-modal', 'add-project-modal', 'reset-modal'].forEach((id) => {
+          document.getElementById(id).addEventListener('click', (e) => {
+            if (e.target.id === id) closeModal(id);
+          });
+        });
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            ['project-modal', 'add-project-modal', 'reset-modal'].forEach(closeModal);
+          }
+        });
+
+        // Copy Email Buttons (Hero + Contact Card)
+        document.getElementById('hero-copy-email-btn').addEventListener('click', handleCopyEmail);
+        document.getElementById('copy-email-btn').addEventListener('click', handleCopyEmail);
+
+        // Contact Form Validation & Toast Feedback
+        document.getElementById('contact-form').addEventListener('submit', (e) => {
+          e.preventDefault();
+          const nameVal = document.getElementById('contact-name').value.trim();
+          const emailVal = document.getElementById('contact-email').value.trim();
+          const subjectVal = document.getElementById('contact-subject').value.trim();
+          const msgVal = document.getElementById('contact-message').value.trim();
+
+          let valid = true;
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          const toggleErr = (id, show) => {
+            document.getElementById(id).classList.toggle('hidden', !show);
+            if (show) valid = false;
+          };
+
+          toggleErr('error-name', nameVal.length < 2);
+          toggleErr('error-email', !emailRegex.test(emailVal));
+          toggleErr('error-subject', subjectVal.length < 2);
+          toggleErr('error-message', msgVal.length < 10);
+
+          if (!valid) {
+            showToast('Please fix the highlighted fields before sending.', 'error');
+            return;
+          }
+
+          e.target.reset();
+          showToast('Message sent! Thank you for reaching out to Biswajit.');
+        });
+      }
+
+      /* -----------------------------------------------------------------------
+       * 10. INTERSECTION OBSERVERS (Scroll Reveal + Active Nav Highlight)
+       * ----------------------------------------------------------------------- */
+      function setupObservers() {
+        const revealObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                revealObserver.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.08 }
+        );
+        document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
+
+        const navObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                document.querySelectorAll('.nav-link').forEach((link) => {
+                  link.classList.toggle('active', link.dataset.nav === id);
+                });
+              }
+            });
+          },
+          { rootMargin: '-35% 0px -55% 0px' }
+        );
+        document.querySelectorAll('section[id]').forEach((sec) => navObserver.observe(sec));
+      }
+
+      /* -----------------------------------------------------------------------
+       * 11. BOOTSTRAP
+       * ----------------------------------------------------------------------- */
+      function init() {
+        document.getElementById('footer-year').textContent = new Date().getFullYear();
+        initThemeAndAccent();
+        renderProfile();
+        renderProjects();
+        renderSkills();
+        renderExperience();
+        setupEventListeners();
+        setupObservers();
+      }
+
+      document.addEventListener('DOMContentLoaded', init);
+    })();
+  </script>
+</body>
+</html>
